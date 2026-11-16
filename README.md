@@ -50,3 +50,10 @@ not a string, and `Error` if `input` contains a lone surrogate.
 Returns the string represented by the percent-encoded `input`. Throws
 `TypeError` if `input` is not a string, and `Error` on any of the malformed
 inputs listed above.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
